@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Styles/route-show-details.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{% static 'styles/logo.jpeg' %}" alt="Metro Logo">
+            </div>
+            <div class="metro-name">
+                Nammuru Metro
+            </div>
+            <div class="home-button">
+                {% if user.is_authenticated %}
+                <a href="/home_user">Home</a>
+                {% else %}
+                <a href="/">Home</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="details-container">
+            <div>
+                Start Station: {{ routeDetes.0.start_station }}
+            </div>
+        
+            <div>
+                End Station: {{ routeDetes.0.end_station }}
+            </div>
+        
+            <div>
+                Stations Between: {{ routeDetes.0.stations_between }}
+            </div>
+        
+            <div>
+                Price: {{ routeDetes.0.price }}
+            </div>
+        
+            <div>
+                Duration: {{ routeDetes.0.duration }}
+            </div>
+        </div>
+        
+        <div class="path-container">
+            {% for path_item in routeDetes.0.path %}
+            <div>
+                <div>{{ forloop.counter }}</div>
+                <div>{{ path_item }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </main>
+</body>
+</html>
